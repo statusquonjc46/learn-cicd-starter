@@ -26,10 +26,9 @@ jobs:
 
     steps:
       - name: Install staticcheck
-        run: go install honnef.co/go/tools/cmd/staticcheck@latest
-      
-      - name: setup GOPATH
-        run: echo 'export PATH=$PATH:$GOPATH/bin' >> ~/.bashrc; source ~/.bashrc
+        run: |
+          go install honnef.co/go/tools/cmd/staticcheck@latest
+          echo "$HOME/go/bin" >> $GITHUB_PATH
 
       - name: Fmt Checks
         run: test -z $(go fmt ./...)
